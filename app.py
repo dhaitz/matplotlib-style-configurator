@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import plot
 
 st.title("Matplotlib Style Configurator")
-st.write("""[GitHub repository](https://github.com/dhaitz/) -
+st.write("""[GitHub repository](https://github.com/dhaitz/matplotlib-style-configurator) -
             [Plotting code](https://matplotlib.org/gallery/style_sheets/style_sheets_reference.html) - 
             [Matplotlib style gallery ](https://tonysyu.github.io/raw_content/matplotlib-style-gallery/gallery.html) - 
             [mplcyberpunk](https://github.com/dhaitz/mplcyberpunk) - 
