@@ -116,7 +116,7 @@ def plot_figure(style_label="", n_columns=6):
                             figsize=fig_size,
                             squeeze=False)
     axs = [item for sublist in axs for item in sublist]
-    axs[0].set_ylabel(style_label)
+    #axs[0].set_ylabel(style_label)
 
     plot_scatter(axs[0], prng)
     plot_image_and_patch(axs[1], prng)
