@@ -45,7 +45,7 @@ for param in params:
 # Draw plot
 fig = plot.plot_figure(style_label=style, n_columns=n_columns)
 st.pyplot(fig=fig)
-
+plt.close(fig)
 
 # Link to download stylesheet
 def get_stylesheet_download_link(params, filename="my_style.mplstyle"):
