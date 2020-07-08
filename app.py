@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 import plot
 
+
 # Title
 st.title("Matplotlib Style Configurator")
 st.write("""[GitHub repository](https://github.com/dhaitz/matplotlib-style-configurator) -
@@ -27,6 +28,7 @@ plt.style.use(style)
 
 n_columns = st.sidebar.selectbox("Number of columns", [1, 2, 3, 6], index=2)
 
+
 # Sidebar: parameter customization widgets
 st.sidebar.header("Customize style:")
 params = Path('parameters.txt').read_text().splitlines()
@@ -38,15 +40,27 @@ for param in params:
     else:
         plt.rcParams[param] = widget_type(param, value=plt.rcParams[param])
 
+
 # Draw plot
 fig = plot.plot_figure(style_label=style, n_columns=n_columns)
 st.pyplot(fig=fig)
 
-# Generate stylesheet
-if st.button("Generate stylesheet text"):
+
+# Link to download stylesheet
+def get_stylesheet_download_link(params, filename="my_style.mplstyle"):
+    """Generates a download link for a stylesheet file. https://discuss.streamlit.io/t/heres-a-download-function-that-works-for-dataframes-and-txt/4052"""
+
+    stylesheet_lines = []
     for param in params:
-        if plt.rcParamsDefault[param] != plt.rcParams[param]:
-            st.write(f"{param}: {plt.rcParams[param]}".replace('#', ''))  # no hash symbol in stylefile?
+        if plt.rcParamsDefault[param] != plt.rcParams[param]:  # only store parameters which were changed from the defaults.
+            stylesheet_lines.append(f"{param}: {plt.rcParams[param]}".replace('#', ''))
+
+    stylesheet_text = '\n'.join(stylesheet_lines)
+    b64 = base64.b64encode(stylesheet_text.encode()).decode()
+    return f'<a href="data:file/text;base64,{b64}" download={filename}>Download stylesheet</a> (<a href="https://matplotlib.org/tutorials/introductory/customizing.html">Installation instructions</a>)'
+
+st.markdown(get_stylesheet_download_link(params), unsafe_allow_html=True)
+
 
 # workaround to open in wide mode (https://github.com/streamlit/streamlit/issues/314#issuecomment-579274365)
 max_width_str = f"max-width: 1000px;"
