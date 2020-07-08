@@ -10,7 +10,7 @@ import base64
 
 # Title
 st.title("Matplotlib Style Configurator")
-st.write("""[GitHub repository](https://github.com/dhaitz/matplotlib-style-configurator) -
+st.markdown("""[GitHub repository](https://github.com/dhaitz/matplotlib-style-configurator) -
             [Plotting code](https://matplotlib.org/gallery/style_sheets/style_sheets_reference.html) -
             [Matplotlib style gallery ](https://tonysyu.github.io/raw_content/matplotlib-style-gallery/gallery.html) -
             [mplcyberpunk](https://github.com/dhaitz/mplcyberpunk) -
@@ -32,6 +32,7 @@ n_columns = st.sidebar.selectbox("Number of columns", [1, 2, 3, 6], index=2)
 
 # Sidebar: parameter customization widgets
 st.sidebar.header("Customize style:")
+st.sidebar.text("(Parameter list is non-exhaustive)")
 params = Path('parameters.txt').read_text().splitlines()
 for param in params:
     widget_type = st.sidebar.checkbox if (type(plt.rcParams[param]) == bool) else st.sidebar.text_input
