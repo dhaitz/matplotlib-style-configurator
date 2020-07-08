@@ -1,5 +1,5 @@
 """
-Source: mpl file
+Source: https://matplotlib.org/gallery/style_sheets/style_sheets_reference.html
 """
 
 import matplotlib.pyplot as plt
