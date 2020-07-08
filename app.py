@@ -54,7 +54,11 @@ def get_stylesheet_download_link(params, filename="my_style.mplstyle"):
     stylesheet_lines = []
     for param in params:
         if plt.rcParamsDefault[param] != plt.rcParams[param]:  # only store parameters which were changed from the defaults.
-            stylesheet_lines.append(f"{param}: {plt.rcParams[param]}".replace('#', ''))
+            if type(plt.rcParams[param]) == list:
+                value = ', '.join(plt.rcParams[param])
+            else:
+                value = plt.rcParams[param]
+            stylesheet_lines.append(f"{param}: {value}".replace('#', ''))
 
     stylesheet_text = '\n'.join(stylesheet_lines)
     b64 = base64.b64encode(stylesheet_text.encode()).decode()
